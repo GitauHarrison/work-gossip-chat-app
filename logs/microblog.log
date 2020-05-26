@@ -73,3 +73,10 @@ sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed
 (Background on this error at: http://sqlalche.me/e/gkpj)
 2020-05-18 14:26:03,202 INFO: Microblog startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
 2020-05-26 14:06:32,511 INFO: Microblog startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:26:47,083 INFO: Microblog startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:29:05,036 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:31:12,955 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:34:48,593 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:35:50,375 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:38:28,905 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 16:39:40,415 INFO: Work Gossip startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
