@@ -14,9 +14,9 @@
             </p>
             {% elif not current_user.is_following(user) %}
             <p>
-                <form action="{{ url_for('follow', username = user.username) }}" method = 'post'>
+                <form action="{{ url_for('follow', username=user.username) }}" method="post">
                     {{ form.hidden_tag() }}
-                    {{ form.submit(value = 'Follow') }}
+                    {{ form.submit(value='Follow') }}
                 </form>
             </p>
             {% else %}
