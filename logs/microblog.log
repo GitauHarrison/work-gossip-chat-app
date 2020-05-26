@@ -72,3 +72,4 @@ sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed
 [parameters: ('arisi', 'Python and flask', 1)]
 (Background on this error at: http://sqlalche.me/e/gkpj)
 2020-05-18 14:26:03,202 INFO: Microblog startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
+2020-05-26 14:06:32,511 INFO: Microblog startup [in /home/gitau/software_development/python/flask_tutorial/test_2_microblog/app/__init__.py:59]
