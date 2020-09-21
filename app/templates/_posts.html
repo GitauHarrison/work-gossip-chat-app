@@ -1,0 +1,11 @@
+<table class="table table-hover">
+    <tr valign='top'>
+        <td>
+            {{ post.author.avatar() }}
+        </td>
+        <td>
+            {{ post.author.username }} said {{ post.timestamp }}:<br>
+            {{ post.body }}
+        </td>
+    </tr>
+</table>
