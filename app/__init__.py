@@ -15,4 +15,4 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 moment = Moment(app)
 
-from app import routes, models
+from app import routes, models, errors
