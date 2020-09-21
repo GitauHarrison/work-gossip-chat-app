@@ -21,6 +21,7 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user)
+        flash('You have logged in successfully!')
         return redirect(url_for('home'))
     return render_template('login.html', title = 'Home', form = form)
 
