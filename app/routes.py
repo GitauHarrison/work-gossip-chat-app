@@ -3,6 +3,7 @@ from app.forms import LoginForm, RegistrationForm
 from flask import render_template, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
+from datetime import datetime
 
 @app.route('/')
 @app.route('/home')
@@ -48,3 +49,9 @@ def register():
 def profile(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('profile.html', title = 'Profile', user = user)
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
