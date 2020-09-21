@@ -1,6 +1,8 @@
 from app import app
 from app.forms import LoginForm, RegistrationForm
-from flask import render_template
+from flask import render_template, redirect, url_for, flash
+from flask_login import current_user, login_user, logout_user
+from app.models import User, Post
 
 @app.route('/')
 @app.route('/home')
