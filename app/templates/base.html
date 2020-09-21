@@ -61,11 +61,12 @@
         {% block scripts %}
             {{ super() }}
             {{ moment.include_moment() }}
+            {{ moment.lang(g.locale) }}
         {% endblock %}
 
         <hr><br>{{super()}}
         {%- block footer %}
-            <footer>&copy; {{moment().format('YYYY') }} Microblog, Inc.</footer>
+            <footer>&copy; {{moment().format('YYYY') }} Tinker ChatApp, Inc.</footer>
         {%- endblock footer %}
     </div>    
 {% endblock %}

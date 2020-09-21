@@ -1,9 +1,10 @@
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from datetime import datetime
+from flask_babel import _, get_locale
 
 @app.route('/')
 @app.route('/home')
@@ -19,10 +20,10 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash(_('Invalid username or password'))
             return redirect(url_for('login'))
         login_user(user, remember = form.remember_me.data)    
-        flash('You have logged in successfully!')
+        flash(('You have logged in successfully!'))
         return redirect(url_for('home'))
     return render_template('login.html', title = 'Home', form = form)
 
@@ -40,7 +41,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('You have been registered successfully! Log in to continue.')
+        flash(_('You have been registered successfully! Log in to continue.'))
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
 
@@ -57,7 +58,7 @@ def edit_profile():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
         db.session.commit()
-        flash('Your changes have been saved!')
+        flash(_('Your changes have been saved!'))
         return redirect(url_for('profile', username = current_user.username))
     elif request.method == 'GET':
         form.username.data = current_user.username
@@ -69,3 +70,4 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
