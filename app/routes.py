@@ -1,6 +1,6 @@
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
-from flask import render_template, redirect, url_for, flash
+from app.forms import LoginForm, RegistrationForm, EditProfileForm
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from datetime import datetime
@@ -49,6 +49,20 @@ def register():
 def profile(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('profile.html', title = 'Profile', user = user)
+
+@app.route('/edit_profile', methods = ['GET', 'POST'])
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved!')
+        return redirect(url_for('profile', username = current_user.username))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', title = 'Edit Profile', form = form)
 
 @app.before_request
 def before_request():
