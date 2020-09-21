@@ -1,9 +1,0 @@
-FLASK_APP=microblog.py
-FLASK_ENV=development
-FLASK_DEBUG=1
-
-MAIL_SERVER=mstp.googlemail.com
-MAIL_PORT=587
-MAIL_USE_TLS=1
-MAIL_USERNAME=Taste Bolder
-MAIL_PASSWORD=44ewCs9QuW5KhcH
