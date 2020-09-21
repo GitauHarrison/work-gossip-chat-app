@@ -23,7 +23,7 @@ def login():
             flash(_('Invalid username or password'))
             return redirect(url_for('login'))
         login_user(user, remember = form.remember_me.data)    
-        flash(('You have logged in successfully!'))
+        flash(_('You have logged in successfully!'))
         return redirect(url_for('home'))
     return render_template('login.html', title = 'Home', form = form)
 

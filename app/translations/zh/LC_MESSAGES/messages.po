@@ -1,0 +1,162 @@
+# Chinese translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-09-21 23:17+0300\n"
+"PO-Revision-Date: 2020-09-21 23:15+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh\n"
+"Language-Team: zh <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: app/__init__.py:19
+msgid "Please log in to access this page"
+msgstr "請登錄訪問該頁面"
+
+#: app/forms.py:8 app/forms.py:14 app/forms.py:31
+msgid "Username"
+msgstr ""
+
+#: app/forms.py:9 app/forms.py:16
+msgid "Password"
+msgstr ""
+
+#: app/forms.py:10
+msgid "Remember Me"
+msgstr ""
+
+#: app/forms.py:11
+msgid "Log In"
+msgstr ""
+
+#: app/forms.py:15
+msgid "Email"
+msgstr ""
+
+#: app/forms.py:17
+msgid "Confirm Password"
+msgstr ""
+
+#: app/forms.py:18
+msgid "Register"
+msgstr ""
+
+#: app/forms.py:23
+msgid "Please use a different username"
+msgstr ""
+
+#: app/forms.py:28
+msgid "Please use a different email address"
+msgstr ""
+
+#: app/forms.py:32
+msgid "About Me"
+msgstr ""
+
+#: app/forms.py:33
+msgid "Update Profile"
+msgstr ""
+
+#: app/forms.py:43
+msgid "Please use a different username."
+msgstr ""
+
+#: app/routes.py:23
+msgid "Invalid username or password"
+msgstr ""
+
+#: app/routes.py:26
+msgid "You have logged in successfully!"
+msgstr "您已成功登錄！"
+
+#: app/routes.py:44
+msgid "You have been registered successfully! Log in to continue."
+msgstr ""
+
+#: app/routes.py:61
+msgid "Your changes have been saved!"
+msgstr ""
+
+#: app/templates/404.html:5
+msgid "Page Not Found"
+msgstr ""
+
+#: app/templates/404.html:6
+msgid "The requested page cannot be found. Return to the"
+msgstr ""
+
+#: app/templates/404.html:6 app/templates/500.html:7
+msgid "home page"
+msgstr ""
+
+#: app/templates/500.html:5
+msgid "Internal Error"
+msgstr ""
+
+#: app/templates/500.html:6
+msgid ""
+"There has been an unexpected error that has occurred. The administrator "
+"has been notified"
+msgstr ""
+
+#: app/templates/500.html:6
+msgid "Sorry for the incovinience caused"
+msgstr ""
+
+#: app/templates/500.html:7
+msgid "Return to the"
+msgstr ""
+
+#: app/templates/edit_profile.html:5
+msgid "Update Your Profile"
+msgstr ""
+
+#: app/templates/edit_profile.html:6
+msgid "Back"
+msgstr ""
+
+#: app/templates/login.html:5
+msgid "Sign In"
+msgstr ""
+
+#: app/templates/login.html:11
+msgid "New Here"
+msgstr ""
+
+#: app/templates/login.html:11
+msgid "Click here to register"
+msgstr ""
+
+#: app/templates/login.html:12
+msgid "Forgot your password"
+msgstr ""
+
+#: app/templates/login.html:12
+msgid "Click here to reset"
+msgstr ""
+
+#: app/templates/profile.html:11
+msgid "User"
+msgstr ""
+
+#: app/templates/profile.html:13
+msgid "Last seen on"
+msgstr ""
+
+#: app/templates/profile.html:15
+msgid "Edit Your Profile"
+msgstr ""
+
+#: app/templates/register.html:5
+msgid "Register Here"
+msgstr ""
+

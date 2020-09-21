@@ -9,12 +9,14 @@ import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from flask_babel import Babel
+from flask_babel import lazy_gettext as _l
 
 app = Flask(__name__)
 app.config.from_object(Config)
 boostrap = Bootstrap(app)
 login = LoginManager(app)
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 moment = Moment(app)
@@ -52,6 +54,7 @@ if not app.debug:
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    #return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return 'sw'
 
 from app import routes, models, errors
