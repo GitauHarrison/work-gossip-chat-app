@@ -20,7 +20,7 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
-        login_user(user)
+        login_user(user, remember = form.remember_me.data)    
         flash('You have logged in successfully!')
         return redirect(url_for('home'))
     return render_template('login.html', title = 'Home', form = form)
@@ -42,3 +42,9 @@ def register():
         flash('You have been registered successfully! Log in to continue.')
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
+
+@app.route('/profile/<username>')
+@login_required
+def profile(username):
+    user = User.query.filter_by(username = username).first_or_404()
+    return render_template('profile.html', title = 'Profile', user = user)
