@@ -18,3 +18,5 @@ class Config(object):
     LANGUAGES = ['en', 'sw']
 
     POSTS_PER_PAGE = 5
+
+    MS_TRANSLATIIONS = '344435f010f8410caaa6c1f972507a3e'
