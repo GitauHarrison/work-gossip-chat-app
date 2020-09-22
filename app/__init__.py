@@ -10,6 +10,7 @@ from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -21,6 +22,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 moment = Moment(app)
 babel = Babel(app)
+mail = Mail(app)
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
