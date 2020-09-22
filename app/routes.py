@@ -1,16 +1,24 @@
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
 from flask import render_template, redirect, url_for, flash, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from datetime import datetime
 from flask_babel import _, get_locale
 
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods = ['GET', 'POST'])
+@app.route('/home', methods = ['GET', 'POST'])
 @login_required
 def home():
-    return render_template('home.html', title = 'Home')
+    form = PostForm() 
+    if form.validate_on_submit():
+        post = Post(body = form.post.data, author = current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash(_('Your post is now live!'))
+        return redirect(url_for('home'))
+    posts = []
+    return render_template('home.html', title = 'Home', form = form, posts = posts)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -50,7 +58,8 @@ def register():
 def profile(username):
     user = User.query.filter_by(username = username).first_or_404()
     form = EmptyForm()
-    return render_template('profile.html', title = 'Profile', user = user, form = form)
+    posts = []
+    return render_template('profile.html', title = 'Profile', user = user, form = form, posts = posts)
 
 @app.route('/edit_profile', methods = ['GET', 'POST'])
 def edit_profile():
