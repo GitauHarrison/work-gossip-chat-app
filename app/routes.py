@@ -1,5 +1,5 @@
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
 from flask import render_template, redirect, url_for, flash, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
@@ -71,3 +71,21 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
     g.locale = str(get_locale())
+
+@app.route('/follow.<username>', methods = 'POST')
+def follow(username):
+    form = EmptyForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username = username).first()
+        if user is None:
+            flash(_('User %()s not found', username = username))
+            return redirect(url_for('profile', username = username))
+        if user == current_user:
+            flash('You cannot follow yourself')
+            return redirect(url_for('profile', username = username))
+        current_user.follow(user)
+        db.session.commit()
+        flash('You are now following %()s', username = username)
+        return redirect(url_for('profile', username = username))
+    else:
+        return redirect(url_for('home'))
