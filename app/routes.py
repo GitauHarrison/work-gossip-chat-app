@@ -82,6 +82,7 @@ def profile(username):
     return render_template('profile.html', title = 'Profile', user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
 
 @app.route('/explore')
+@login_required
 def explore():    
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
