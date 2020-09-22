@@ -16,3 +16,4 @@ Features available in the app include:
 8. Current user can see ALL their posts
 9. If a post is in a foreign language, their is translation available (however, it is not automatic. Current user can choose to translate it or not.)
 10. Local time conversion in a format that is friendly to a user
+11. Current user can edit their profile
