@@ -7,6 +7,7 @@ from datetime import datetime
 from flask_babel import _, get_locale
 from guess_language import guess_language
 from app.translate import translate
+from app.email import send_password_reset_email
 
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/home', methods = ['GET', 'POST'])
