@@ -11,8 +11,23 @@
                 <h3><b>{{ _('User') }}: </b>{{ user.username }}</h3>
                 {% if user.about_me %}<p> {{ user.about_me }} </p>{% endif %}
                 {% if user.last_seen %}<p>{{ _('Last seen on') }}: {{ moment(user.last_seen).format('LLLL') }}</p>{% endif %}
+                <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following</p>
                 {% if user == current_user %}
                     <a href="{{ url_for('edit_profile') }}">{{ _('Edit Your Profile') }}</a>
+                {% elif not current_user.is_following(user) %}
+                    <p>
+                        <form action="{{ url_for('follow', username = user.username) }}" method="POST">
+                            {{ form.hidden_tag() }}
+                            {{ form.submit(value='Follow') }}
+                        </form>
+                    </p>
+                {% else %}
+                    <p>
+                        <form action="{{ url_for('unfollow', username = user.username) }}" method="POST">
+                            {{ form.hidden_tag() }}
+                            {{ form.submit(value='Unfollow') }}
+                        </form>
+                    </p>
                 {% endif %}
             </td>
         </tr>

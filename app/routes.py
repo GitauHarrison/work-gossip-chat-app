@@ -78,14 +78,32 @@ def follow(username):
     if form.validate_on_submit():
         user = User.query.filter_by(username = username).first()
         if user is None:
-            flash(_('User %()s not found', username = username))
+            flash(_('User %()s not found'), username = username)
             return redirect(url_for('profile', username = username))
         if user == current_user:
-            flash('You cannot follow yourself')
+            flash(_('You cannot follow yourself'))
             return redirect(url_for('profile', username = username))
         current_user.follow(user)
         db.session.commit()
-        flash('You are now following %()s', username = username)
+        flash(_('You are now following %()s'), username = username)
+        return redirect(url_for('profile', username = username))
+    else:
+        return redirect(url_for('home'))
+
+@app.route('/unfollow/<username>', methods = ['POST'])
+def unfollow(username):
+    form = EmptyForm()
+    if form.validate_on_submit()    :
+        user = User.query.filter_by(username = username).first()
+        if user is None:
+            flash(_('User %()s not found'), username = username)
+            return redirect(url_for('profile', username = username))
+        if user == current_user:
+            flash(_('You cannot unfollow yourself'))
+            return redirect(url_for('profile', username = username))
+        current_user.unfollow(user)
+        db.session.commit()
+        flash(_('You are not following %()s'), username = username)
         return redirect(url_for('profile', username = username))
     else:
         return redirect(url_for('home'))
