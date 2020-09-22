@@ -9,7 +9,7 @@ Features available in the app include:
 1. New user registration
 2. Current user log in
 3. Ability to post comments
-4. Current can find other users of th platform
+4. Current user can find other users of th platform
 5. Current user can follow and unfollow other platform users
 6. Current user can see all the posts that have been posted in the platform
 7. Current user can see all the posts of people that they personally follow
