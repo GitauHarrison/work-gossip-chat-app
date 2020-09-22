@@ -1,11 +1,12 @@
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
-from flask import render_template, redirect, url_for, flash, request, g
+from flask import render_template, redirect, url_for, flash, request, g, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from datetime import datetime
 from flask_babel import _, get_locale
 from guess_language import guess_language
+from app.translate import translate
 
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/home', methods = ['GET', 'POST'])
@@ -150,3 +151,10 @@ def unfollow(username):
         return redirect(url_for('profile', username = username))
     else:
         return redirect(url_for('home'))
+
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_language'],
+                                      request.form['dest_language'])})
