@@ -12,7 +12,7 @@
             said {{ moment(post.timestamp).fromNow() }}:
             <br>
             <span id="post{{ post.id }}">{{ post.body }}</span>
-            {% if post.language or post.language != g.locale %}
+            {% if post.language and post.language != g.locale %}
                 <br><br>
                 <span id="translation{{ post.id }}">
                     <a href="javascript:translate(
