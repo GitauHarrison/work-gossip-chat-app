@@ -1,4 +1,4 @@
-from app import app, db
+from app import db
 from app.main.forms import EditProfileForm, EmptyForm, PostForm
 from flask import render_template, redirect, url_for, flash, request, g, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
@@ -7,6 +7,7 @@ from datetime import datetime
 from flask_babel import _, get_locale
 from guess_language import guess_language
 from app.translate import translate
+from app.main import bp
 
 @bp.before_request
 def before_request():
