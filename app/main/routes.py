@@ -28,14 +28,14 @@ def home():
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live!'))
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
-    next_url = url_for('home', page = posts.next_num) \
+    next_url = url_for('main.home', page = posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('home', page = posts.prev_num) \
+    prev_url = url_for('main.home', page = posts.prev_num) \
         if posts.has_prev else None
     return render_template('home.html', title = _('Home'), form = form, posts = posts.items, prev_url = prev_url, next_url = next_url)
 
@@ -48,9 +48,9 @@ def profile(username):
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
-    next_url = url_for('profile', username = username, page = posts.next_num) \
+    next_url = url_for('main.profile', username = username, page = posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('profile', username = username, page = posts.prev_num) \
+    prev_url = url_for('main.profile', username = username, page = posts.prev_num) \
         if posts.has_prev else None
     return render_template('profile.html', title = _('Profile'), user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
 
@@ -61,9 +61,9 @@ def explore():
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False
     )
-    next_url = url_for('explore', page = posts.next_num) \
+    next_url = url_for('main.explore', page = posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('explore', page = posts.prev_num) \
+    prev_url = url_for('main.explore', page = posts.prev_num) \
         if posts.has_prev else None
     return render_template('home.html', title = _('Explore'), posts = posts.items, next_url = next_url, prev_url = prev_url)
 
@@ -92,13 +92,13 @@ def follow(username):
             return redirect(url_for('profile', username = username))
         if user == current_user:
             flash(_('You cannot follow yourself'))
-            return redirect(url_for('profile', username = username))
+            return redirect(url_for('main.profile', username = username))
         current_user.follow(user)
         db.session.commit()
         flash(_('You are now following %(username)s', username = username))
-        return redirect(url_for('profile', username = username))
+        return redirect(url_for('main.profile', username = username))
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
 
 @app.route('/unfollow/<username>', methods = ['POST'])
 @login_required
@@ -115,9 +115,9 @@ def unfollow(username):
         current_user.unfollow(user)
         db.session.commit()
         flash(_('You are not following %(username)s', username = username))
-        return redirect(url_for('profile', username = username))
+        return redirect(url_for('main.profile', username = username))
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
 
 @app.route('/translate', methods=['POST'])
 @login_required
