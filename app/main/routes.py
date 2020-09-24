@@ -75,7 +75,7 @@ def edit_profile():
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash(_('Your changes have been saved!'))
-        return redirect(url_for('profile', username = current_user.username))
+        return redirect(url_for('main.profile', username = current_user.username))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
@@ -89,7 +89,7 @@ def follow(username):
         user = User.query.filter_by(username = username).first()
         if user is None:
             flash(_('User %(username)s not found', username = username))
-            return redirect(url_for('profile', username = username))
+            return redirect(url_for('main.profile', username = username))
         if user == current_user:
             flash(_('You cannot follow yourself'))
             return redirect(url_for('main.profile', username = username))
@@ -108,10 +108,10 @@ def unfollow(username):
         user = User.query.filter_by(username = username).first()
         if user is None:
             flash(_('User %(username)s not found', username = username))
-            return redirect(url_for('profile', username = username))
+            return redirect(url_for('main.profile', username = username))
         if user == current_user:
             flash(_('You cannot unfollow yourself'))
-            return redirect(url_for('profile', username = username))
+            return redirect(url_for('main.profile', username = username))
         current_user.unfollow(user)
         db.session.commit()
         flash(_('You are not following %(username)s', username = username))
