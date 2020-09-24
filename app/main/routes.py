@@ -37,7 +37,7 @@ def home():
         if posts.has_next else None
     prev_url = url_for('main.home', page = posts.prev_num) \
         if posts.has_prev else None
-    return render_template('home.html', title = _('Home'), form = form, posts = posts.items, prev_url = prev_url, next_url = next_url)
+    return render_template('main/home.html', title = _('Home'), form = form, posts = posts.items, prev_url = prev_url, next_url = next_url)
 
 @bp.route('/profile/<username>')
 @login_required
@@ -52,7 +52,7 @@ def profile(username):
         if posts.has_next else None
     prev_url = url_for('main.profile', username = username, page = posts.prev_num) \
         if posts.has_prev else None
-    return render_template('profile.html', title = _('Profile'), user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
+    return render_template('main/profile.html', title = _('Profile'), user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
 
 @bp.route('/explore')
 @login_required
@@ -65,7 +65,7 @@ def explore():
         if posts.has_next else None
     prev_url = url_for('main.explore', page = posts.prev_num) \
         if posts.has_prev else None
-    return render_template('home.html', title = _('Explore'), posts = posts.items, next_url = next_url, prev_url = prev_url)
+    return render_template('main/home.html', title = _('Explore'), posts = posts.items, next_url = next_url, prev_url = prev_url)
 
 @bp.route('/edit_profile', methods = ['GET', 'POST'])
 def edit_profile():
@@ -79,7 +79,7 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title = _('Edit Profile'), form = form)
+    return render_template('main/edit_profile.html', title = _('Edit Profile'), form = form)
 
 @bp.route('/follow/<username>', methods=['POST'])
 @login_required
