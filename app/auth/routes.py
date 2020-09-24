@@ -20,7 +20,7 @@ def login():
         login_user(user, remember = form.remember_me.data)    
         flash(_('You have logged in successfully!'))
         return redirect(url_for('main.home'))
-    return render_template('login.html', title = _('Home'), form = form)
+    return render_template('auth/login.html', title = _('Home'), form = form)
 
 @bp.route('/logout')
 def logout():
@@ -38,7 +38,7 @@ def register():
         db.session.commit()
         flash(_('You have been registered successfully! Log in to continue.'))
         return redirect(url_for('auth.login'))
-    return render_template('register.html', title = _('Register'), form = form)
+    return render_template('auth/register.html', title = _('Register'), form = form)
 
 @bp.route('/reset_password/<token>', methods = ['GET', 'POST'])
 def reset_passwor(token):
@@ -53,7 +53,7 @@ def reset_passwor(token):
         db.session.commit()
         flash(_('Your password has been reset!'))
         return redirect(url_for('auth.login'))
-    return render_template('reset_password.html', title = _('Reset Password'), form = form)
+    return render_template('auth/reset_password.html', title = _('Reset Password'), form = form)
 
 @bp.route('/reset_password_request', methods = ['GET', 'POST'])
 def reset_password_request():
@@ -66,4 +66,4 @@ def reset_password_request():
             send_password_reset_email(user)
         flash(_('Check your email for the instructions on how to reset your password'))
         return redirect(url_for('auth.login'))
-    return render_template('reset_password_request.html', title = _('Request Password Reset'), form = form)
+    return render_template('auth/reset_password_request.html', title = _('Request Password Reset'), form = form)
