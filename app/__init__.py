@@ -15,7 +15,7 @@ from flask_mail import Mail
 
 bootstrap = Bootstrap()
 login = LoginManager()
-login.login_view = 'login'
+login.login_view = 'auth.login'
 login.login_message = _l('Please log in to access this page')
 db = SQLAlchemy()
 migrate = Migrate()

@@ -1,7 +1,7 @@
 from app import db
 from app.main.forms import EditProfileForm, EmptyForm, PostForm
-from flask import render_template, redirect, url_for, flash, request, g, jsonify
-from flask_login import current_user, login_user, logout_user, login_required
+from flask import render_template, redirect, url_for, flash, request, g, jsonify, current_app
+from flask_login import current_user, login_required
 from app.models import User, Post
 from datetime import datetime
 from flask_babel import _, get_locale
@@ -32,7 +32,7 @@ def home():
         return redirect(url_for('main.home'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
-        page, app.config['POSTS_PER_PAGE'], False
+        page, current_app.config['POSTS_PER_PAGE'], False
     )
     next_url = url_for('main.home', page = posts.next_num) \
         if posts.has_next else None
@@ -47,7 +47,7 @@ def profile(username):
     form = EmptyForm()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
+        page, current_app.config['POSTS_PER_PAGE'], False
     )
     next_url = url_for('main.profile', username = username, page = posts.next_num) \
         if posts.has_next else None
@@ -60,7 +60,7 @@ def profile(username):
 def explore():    
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page, app.config['POSTS_PER_PAGE'], False
+        page, current_app.config['POSTS_PER_PAGE'], False
     )
     next_url = url_for('main.explore', page = posts.next_num) \
         if posts.has_next else None

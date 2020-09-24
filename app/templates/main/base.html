@@ -35,7 +35,7 @@
                 <li><a href="{{ url_for('auth.login') }}">Login</a></li>  
             {% else %} 
                 <li><a href="{{ url_for('main.profile', username = current_user.username) }}">Profile</a></li>
-                <li><a href="{{ url_for('main.logout') }}">Logout</a></li>                
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>                
             {% endif %}
         </div>
     </div>
