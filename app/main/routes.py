@@ -8,15 +8,15 @@ from flask_babel import _, get_locale
 from guess_language import guess_language
 from app.translate import translate
 
-@app.before_request
+@bp.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
     g.locale = str(get_locale())
 
-@app.route('/', methods = ['GET', 'POST'])
-@app.route('/home', methods = ['GET', 'POST'])
+@bp.route('/', methods = ['GET', 'POST'])
+@bp.route('/home', methods = ['GET', 'POST'])
 @login_required
 def home():
     form = PostForm() 
@@ -39,7 +39,7 @@ def home():
         if posts.has_prev else None
     return render_template('home.html', title = _('Home'), form = form, posts = posts.items, prev_url = prev_url, next_url = next_url)
 
-@app.route('/profile/<username>')
+@bp.route('/profile/<username>')
 @login_required
 def profile(username):
     user = User.query.filter_by(username = username).first_or_404()
@@ -54,7 +54,7 @@ def profile(username):
         if posts.has_prev else None
     return render_template('profile.html', title = _('Profile'), user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
 
-@app.route('/explore')
+@bp.route('/explore')
 @login_required
 def explore():    
     page = request.args.get('page', 1, type=int)
@@ -67,7 +67,7 @@ def explore():
         if posts.has_prev else None
     return render_template('home.html', title = _('Explore'), posts = posts.items, next_url = next_url, prev_url = prev_url)
 
-@app.route('/edit_profile', methods = ['GET', 'POST'])
+@bp.route('/edit_profile', methods = ['GET', 'POST'])
 def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
@@ -81,7 +81,7 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title = _('Edit Profile'), form = form)
 
-@app.route('/follow/<username>', methods=['POST'])
+@bp.route('/follow/<username>', methods=['POST'])
 @login_required
 def follow(username):
     form = EmptyForm()
@@ -100,7 +100,7 @@ def follow(username):
     else:
         return redirect(url_for('main.home'))
 
-@app.route('/unfollow/<username>', methods = ['POST'])
+@bp.route('/unfollow/<username>', methods = ['POST'])
 @login_required
 def unfollow(username):
     form = EmptyForm()
@@ -119,7 +119,7 @@ def unfollow(username):
     else:
         return redirect(url_for('main.home'))
 
-@app.route('/translate', methods=['POST'])
+@pp.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
     return jsonify({'text': translate(request.form['text'],
