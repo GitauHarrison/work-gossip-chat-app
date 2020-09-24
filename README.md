@@ -2,7 +2,7 @@
 
 Welcome to TinkerChatApp. Here, workers can feel free to randomly chat among themselves or with other platform users.
 
-![TinkerChatApp](app/static/images/TinkerChatApp.png)
+![TinkerChatApp](app/static/images/TinkerChatAppHome.png)
 
 Features available in the app include:
 
