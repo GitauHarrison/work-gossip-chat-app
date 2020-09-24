@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
@@ -12,7 +12,7 @@
     {% endif %}
 
     {% for post in posts %}
-        {% include '_posts.html' %}
+        {% include 'main/_posts.html' %}
     {% endfor %}
     <nav aria-label="...">
         <ul class="pager">

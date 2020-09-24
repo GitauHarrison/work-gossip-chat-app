@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
@@ -13,17 +13,17 @@
                 {% if user.last_seen %}<p>{{ _('Last seen on') }}: {{ moment(user.last_seen).format('LLLL') }}</p>{% endif %}
                 <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following</p>
                 {% if user == current_user %}
-                    <a href="{{ url_for('edit_profile') }}">{{ _('Edit Your Profile') }}</a>
+                    <a href="{{ url_for('main.edit_profile') }}">{{ _('Edit Your Profile') }}</a>
                 {% elif not current_user.is_following(user) %}
                     <p>
-                        <form action="{{ url_for('follow', username = user.username) }}" method="POST">
+                        <form action="{{ url_for('main.follow', username = user.username) }}" method="POST">
                             {{ form.hidden_tag() }}
                             {{ form.submit(value='Follow') }}
                         </form>
                     </p>
                 {% else %}
                     <p>
-                        <form action="{{ url_for('unfollow', username = user.username) }}" method="POST">
+                        <form action="{{ url_for('main.unfollow', username = user.username) }}" method="POST">
                             {{ form.hidden_tag() }}
                             {{ form.submit(value='Unfollow') }}
                         </form>
@@ -34,7 +34,7 @@
     </table>
 
     {% for post in posts %}
-        {% include '_posts.html' %}
+        {% include 'main/_posts.html' %}
     {% endfor %}
     <nav aria-label="...">
         <ul class="pager">

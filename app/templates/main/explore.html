@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
     <h1>Find other users</h1>
     {% for post in posts %}
-        {% include '_posts.html' %}
+        {% include 'main/_posts.html' %}
     {% endfor %}
 {% endblock %}

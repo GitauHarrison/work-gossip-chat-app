@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
     <h1>{{ _('Internal Error') }}</h1>
     <p>{{ _('There has been an unexpected error that has occurred. The administrator has been notified') }}. <br>{{ _('Sorry for the incovinience caused') }}.</p>    
-    <p>{{ _('Return to the') }} <a href="{{ url_for('home') }}">{{ _('home page') }}</a></p>
+    <p>{{ _('Return to the') }} <a href="{{ url_for('main.home') }}">{{ _('home page') }}</a></p>
 {% endblock %}
