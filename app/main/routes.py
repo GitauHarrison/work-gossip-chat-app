@@ -120,7 +120,7 @@ def unfollow(username):
     else:
         return redirect(url_for('main.home'))
 
-@pp.route('/translate', methods=['POST'])
+@bp.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
     return jsonify({'text': translate(request.form['text'],
