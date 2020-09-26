@@ -22,3 +22,5 @@ class Config(object):
     POSTS_PER_PAGE = 5
 
     MS_TRANSLATOR_KEY = '344435f010f8410caaa6c1f972507a3e'
+
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
