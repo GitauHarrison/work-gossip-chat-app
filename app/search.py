@@ -20,10 +20,10 @@ def query_index(index, query, page, per_page):
         index = index,
         body = {
             'query':{
-                'multi_match': {'query': query, 'fields': ['*']},
-                'from': (page - 1) * per_page,
-                'size': per_page
-            }
+                'multi_match': {'query': query, 'fields': ['*']}                
+            },
+            'from': (page - 1) * per_page,
+            'size': per_page
         }
     )
     for hit in search['hits']['hits']:
