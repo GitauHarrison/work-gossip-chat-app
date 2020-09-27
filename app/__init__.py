@@ -35,7 +35,7 @@ def create_app(config_class=Config):
     babel.init_app(app)
     mail.init_app(app)
     bootstrap.init_app(app)
-    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_U[RL']]) \
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None
 
 
