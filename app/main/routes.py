@@ -127,3 +127,20 @@ def translate_text():
     return jsonify({'text': translate(request.form['text'],
                                       request.form['source_language'],
                                       request.form['dest_language'])})
+
+@bp.route('/search')
+@login_required
+class seach():
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type = int)
+    posts, total = Post.seach(
+        g.search_form.q.data,
+        page,
+        current_app.config['POSTS_PER_PAGE']
+    )
+    next_url = url_for('main.search', q = g.search_form.q.data, page = page + 1) \
+        if total > page * current_app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('main.search', q = g.search_form.q.data, page = page -1) \
+        if page > 1 else None
+    return render_template('main/search.html', title = _('Search'), prev_url = prev_url, next_url = next_url, posts = posts)
