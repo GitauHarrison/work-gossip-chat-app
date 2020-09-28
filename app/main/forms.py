@@ -3,6 +3,7 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import User
 from flask_babel import _, lazy_gettext as _l
+from flask import request
 
 class EditProfileForm(FlaskForm):
     username = StringField(_l('Username'), validators = [DataRequired()])
@@ -25,3 +26,6 @@ class EmptyForm(FlaskForm):
 class PostForm(FlaskForm):
     post = TextAreaField(_l('Say Something'), validators = [DataRequired()])
     submit = SubmitField('Post Your Comment')
+
+class SearchForm(FlaskForm):
+    q = StringField(_('Search'), validators = [DataRequired()])        
