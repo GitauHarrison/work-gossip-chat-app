@@ -1,5 +1,5 @@
 from app import db
-from app.main.forms import EditProfileForm, EmptyForm, PostForm
+from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm
 from flask import render_template, redirect, url_for, flash, request, g, jsonify, current_app
 from flask_login import current_user, login_required
 from app.models import User, Post
@@ -9,11 +9,12 @@ from guess_language import guess_language
 from app.translate import translate
 from app.main import bp
 
-@bp.before_request
+@bp.before_app_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        g.search_form= SearchForm()
     g.locale = str(get_locale())
 
 @bp.route('/', methods = ['GET', 'POST'])
