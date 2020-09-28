@@ -6,6 +6,9 @@ from hashlib import md5
 from time import time
 import jwt
 from flask import current_app
+from app.search import add_to_index, remove_from_index, query_index
+
+
 
 followers = db.Table(
     'followers',
