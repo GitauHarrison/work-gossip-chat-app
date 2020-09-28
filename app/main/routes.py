@@ -130,7 +130,7 @@ def translate_text():
 
 @bp.route('/search')
 @login_required
-class seach():
+def search():
     if not g.search_form.validate():
         return redirect(url_for('main.explore'))
     page = request.args.get('page', 1, type = int)
