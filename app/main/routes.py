@@ -143,4 +143,4 @@ def search():
         if total > page * current_app.config['POSTS_PER_PAGE'] else None
     prev_url = url_for('main.search', q = g.search_form.q.data, page = page -1) \
         if page > 1 else None
-    return render_template('main/search.html', title = _('Search'), prev_url = prev_url, next_url = next_url, posts = posts)
+    return render_template('main/search.html', title = _('Search'), total = total, prev_url = prev_url, next_url = next_url, posts = posts)
