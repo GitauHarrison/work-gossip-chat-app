@@ -21,6 +21,14 @@ class SearchableMixin(object):
             db.case(when, value = cls.id), total
         )
 
+    @classmethod
+    def before_commit(cls, session):
+        session._changes = {
+            'add': list(session.new),
+            'update': list(session.dirty),
+            'delete': list(session.deleted)
+        }
+
 followers = db.Table(
     'followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
