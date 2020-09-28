@@ -18,8 +18,7 @@ class SearchableMixin(object):
         for i in range(len(ids)):
             when.append((ids[i], i))
         return cls.query.filter(cls.id.in_(ids)).order_by(
-            db.case(when, value = cls.id), total
-        )
+            db.case(when, value = cls.id)), total
 
     @classmethod
     def before_commit(cls, session):
