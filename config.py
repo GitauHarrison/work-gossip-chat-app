@@ -19,7 +19,7 @@ class Config(object):
 
     LANGUAGES = ['en', 'sw']
 
-    POSTS_PER_PAGE = 5
+    POSTS_PER_PAGE = 10
 
     MS_TRANSLATOR_KEY = '344435f010f8410caaa6c1f972507a3e'
 
