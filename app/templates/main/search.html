@@ -3,6 +3,7 @@
 
 {% block app_content %}
     <h1>Search Results<br></h1> 
+    <p>Total results found: {{ total }}</p>
     {% for post in posts %}
         {% include 'main/_posts.html' %}
     {% endfor %}
