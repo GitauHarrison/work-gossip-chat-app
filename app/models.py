@@ -42,6 +42,11 @@ class SearchableMixin(object):
                 remove_from_index(obj.__tablename__, obj)
         session._changes = None
 
+    @classmethod
+    def reindex(cls):
+        for obj in cls.query:
+            add_to_index(cls.__tablename__, obj)
+
 followers = db.Table(
     'followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
