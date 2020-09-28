@@ -29,6 +29,12 @@ class SearchableMixin(object):
             'delete': list(session.deleted)
         }
 
+    @classmethod
+    def after_commit(cls, session):
+        for obj in session._changes['add']:
+            if isinstance(obj, SearchableMixin):
+                add_to_index(obj.__tablename__, obj)
+
 followers = db.Table(
     'followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
