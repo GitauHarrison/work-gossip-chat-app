@@ -24,3 +24,5 @@ class Config(object):
     MS_TRANSLATOR_KEY = '344435f010f8410caaa6c1f972507a3e'
 
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
