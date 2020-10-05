@@ -23,6 +23,8 @@ class Config(object):
 
     MS_TRANSLATOR_KEY = '344435f010f8410caaa6c1f972507a3e'
 
-    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+    ELASTICSEARCH_URL = 'https://paas:d57302553f5b61953f15085e1bd1ce1c@oin-us-east-1.searchly.com'
 
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
+
+    DATABASE_URL = 'postgres://xazhpuvscwddel:cb83ea3cf2383d9c15cd51086a932c615dc15552b56db1de855bd5ca6f02dd4f@ec2-54-172-173-58.compute-1.amazonaws.com:5432/d839sqtunrhseg'
