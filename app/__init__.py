@@ -30,7 +30,7 @@ def create_app(config_class=Config):
 
     login.init_app(app)
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app, db)
     moment.init_app(app)
     babel.init_app(app)
     mail.init_app(app)
