@@ -1,8 +1,8 @@
 from app import db
-from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm
+from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm, MessageForm
 from flask import render_template, redirect, url_for, flash, request, g, jsonify, current_app
 from flask_login import current_user, login_required
-from app.models import User, Post
+from app.models import User, Post, Message
 from datetime import datetime
 from flask_babel import _, get_locale
 from guess_language import guess_language
@@ -151,3 +151,15 @@ def search():
     prev_url = url_for('main.search', q = g.search_form.q.data, page = page -1) \
         if page > 1 else None
     return render_template('main/search.html', title = _('Search'), total = total, prev_url = prev_url, next_url = next_url, posts = posts)
+
+@bp.route('/send_message/<recipient>', methods = ['GET', 'POST'])
+def send_message(recipient):
+    user = User.query.filter_by(username = recipient).first_or_404()
+    form = MessageForm()
+    if form.validate_on_submit():
+        msg = Message(author = current_user, recipient=user, body  = form.message.data)
+        db.session.add(msg)
+        db.session.commit()
+        flash(_('Your message has been sent'))
+        return redirect(url_for('main.profile', username = recipient))
+    return render_template('send_message.html', title = _('Send Message'), form = form, user = user)
