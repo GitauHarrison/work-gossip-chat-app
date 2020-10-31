@@ -162,7 +162,7 @@ def send_message(recipient):
         db.session.commit()
         flash(_('Your message has been sent'))
         return redirect(url_for('main.profile', username = recipient))
-    return render_template('main/send_message.html', title = _('Send Message'), form = form, user = user)
+    return render_template('main/send_message.html', title = _('Send Message'), form = form, user = user, recipient=recipient)
 
 @bp.route('/messages')
 def messages():
