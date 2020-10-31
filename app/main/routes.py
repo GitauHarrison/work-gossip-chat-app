@@ -56,6 +56,13 @@ def profile(username):
         if posts.has_prev else None
     return render_template('main/profile.html', title = _('Profile'), user = user, form = form, posts = posts.items, next_url = next_url, prev_url = prev_url)
 
+@bp.route('/profile/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    form = EmptyForm()
+    return render_template('main/profile_popup.html', user=user, form=form)
+
 @bp.route('/explore')
 @login_required
 def explore():    
