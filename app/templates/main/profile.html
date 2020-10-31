@@ -32,7 +32,7 @@
                 {% if user != current_user %}
                     <p>
                         <a href="{{ url_for('main.send_message', recipient = user.username) }}">
-                            {{ _('Send private message') }}
+                            {{ _('Send Private Message') }}
                         </a>
                     </p>
                 {% endif %}
