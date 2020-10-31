@@ -45,9 +45,9 @@
                     <a href="{{ url_for('main.messages') }}">
                         {{ _('Messages') }}
                         {% set new_messages = current_user.new_messages() %}
-                        {% if new_messages %}
-                            <span class="badge"> {{ new_messages }} </span>
-                        {% endif %}
+                            <span id="message_count" class="badge" style="visibility: {% if new_messages %} visible {% else %} hidden {% endif %};" >
+                                 {{ new_messages }} 
+                            </span>
                     </a>
                 </li>
                 <li><a href="{{ url_for('main.profile', username = current_user.username) }}">Profile</a></li>
