@@ -93,7 +93,7 @@
                             timer = setTimeout(function() {
                                 timer = null;
                                 xhr = $.ajax(
-                                    '/profile/' + elem.first().text().trim() + '/popup').done(
+                                    '/main/profile/' + elem.first().text().trim() + '/popup').done(
                                         function(data) {
                                             xhr = null;
                                             elem.popover({
