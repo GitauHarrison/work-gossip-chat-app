@@ -136,7 +136,7 @@ class User( UserMixin ,db.Model):
         ).count()
 
     def add_notification(self, name, data):
-        self.notificaions.filter_by(name = name).delete()
+        self.notifications.filter_by(name = name).delete()
         n = Notification(name = name, payload_json=json.dumps(data), user = self)
         db.session.add(n)
         return n
