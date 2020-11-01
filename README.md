@@ -18,3 +18,5 @@ Features available in the app include:
 10. Local time conversion in a format that is friendly to a user
 11. Current user can edit their profile
 12. Current user can search for a post using a keyword
+13. Popups on User profile Links
+14. Realtime private message updates
