@@ -135,6 +135,12 @@ class User( UserMixin ,db.Model):
             Message.timestamp > last_read_time
         ).count()
 
+    def add_notification(self, name, data):
+        self.notificaions.filter_by(name = name).delete()
+        n = Notification(name = name, payload_json=json.dumps(data), user = self)
+        db.session.add(n)
+        return n
+
 class Post(SearchableMixin, db.Model):
     __searchable__ = ['body']
     id = db.Column(db.Integer, primary_key = True)
