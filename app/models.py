@@ -70,7 +70,7 @@ class User( UserMixin ,db.Model):
     messages_received = db.relationship('Message', foreign_keys='Message.recipient_id', backref='recipient', lazy='dynamic')
     last_message_read_time = db.Column(db.DateTime) # the last time the user visited the messages page
 
-    notificaions = db.relationship('Notification', backref='user', lazy='dynamic')
+    notifications = db.relationship('Notification', backref='user', lazy='dynamic')
 
     followed = db.relationship(
         'User', 
