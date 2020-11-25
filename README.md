@@ -1,10 +1,11 @@
 # TinkerChatApp
 
-Welcome to TinkerChatApp. Here, workers can feel free to randomly chat among themselves or with other platform users.
-
 ![TinkerChatApp](app/static/images/TinkerChatApp.png)
 
-Features available in the app include:
+### Overview
+Welcome to TinkerChatApp. Here, workers can feel free to randomly chat among themselves or with other platform users.
+
+### Features:
 
 1. New user registration
 2. Current user log in
@@ -20,3 +21,36 @@ Features available in the app include:
 12. Current user can search for a post using a keyword
 13. Popups on User profile Links
 14. Realtime private message updates
+
+### Contributors
+* [Gitau Harrison](https://github.com/GitauHarrison)
+
+### Deployed Application
+
+* [Tinker Chat App on Heroku](https://work-gossip-chat-app.herokuapp.com/auth/login)
+
+### Testing
+
+To test the project out, you can clone this repo to your local machine:
+
+```python
+$ git clone git@github.com:GitauHarrison/work-gossip-chat-app.git
+```
+
+Create and activate your virtual environment before running it:
+
+```python
+$ workon work-gossip-app # I am using virtualenvwrapper
+```
+
+Install all used dependancies:
+
+```python
+(work-gossip-app) $ pip3 install -r requirements.txt
+```
+
+Run the application:
+
+```
+$ flask run
+```
