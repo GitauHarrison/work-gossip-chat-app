@@ -21,9 +21,9 @@ guess-language-spirit==0.5.3
 gunicorn==20.0.4
 idna==2.9
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==3.0.3
 Mako==1.1.2
-MarkupSafe==1.1.1
+MarkupSafe==2.0.1
 psycopg2==2.8.6
 PyJWT==1.7.1
 python-dateutil==2.8.1
